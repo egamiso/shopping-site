@@ -1,0 +1,556 @@
+@charset "utf-8";
+
+html {
+  font-size: 62.5%;
+  background: #f9f8f6;
+  color: #232323;
+}
+
+@mixin fontsize($size: 24, $base: 10) {
+  font-size: $size + px;
+  font-size: ($size / $base) * 1rem;
+}
+
+$basecolor: #f9f8f6;
+$maincolor: #887f69;
+$linecolor: #e2ddd4;
+$subcolor: #e8e4da;
+
+.uppercase{
+  text-transform: uppercase;
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+}
+
+h6{                    //タイトルなど
+  color:$maincolor;
+  font-weight: bold;
+}
+
+////////////////////ヘッダー部分////////////////////////
+header{
+
+  color: $maincolor;
+
+  #header_in{
+    padding-top: 10px;
+    padding-bottom: 4px;
+    margin-bottom: 20px;
+  }
+  
+  .logo{
+    padding-top: 20px;
+  }
+
+
+//header モバイルサイト表示
+  @media (max-width: 550px) {
+    
+    #header_in{
+      text-align: center;
+
+        .sp_navi_li{
+          width: 180px;
+          position: absolute;
+          right: 2%;
+          border: 1px solid #eee;
+          background: white;
+          margin: 0;
+          padding: 0;
+          display: none;
+
+          z-index: 100;
+
+        li{
+
+          list-style: none;
+          margin: 0;
+          padding: 0;
+
+          a{
+            display: block;
+            padding: 10px 8px;
+            border-bottom: 1px solid #eee;
+            @include fontsize(14);
+            text-decoration: none;
+          }
+          
+        }
+        
+      } //.navi
+    
+    } //#header_in
+    
+  } //max-width:550px
+  
+  
+//ヘッダー部分 PCサイト表示
+  @media (min-width: 551px) {
+    .sp_navi{
+      display: none;
+    }
+    
+    #header_in{
+    }
+
+    .pc_navi_li{
+        position: absolute;
+        margin-bottom: 0;
+        right: 10px;
+        bottom: 10px;
+        
+      li{
+        display: inline-block;
+        margin: 0 10px;
+      } 
+      
+      .icons{
+        margin: 3px;
+      }
+
+    } // .pc_navi_li
+  
+  } // min-width: 551px
+
+
+//SP表示時にPCのナビを非表示にする
+  @media (max-width: 550px) {
+    .pc_navi{
+      display: none;
+    }
+    
+  } // max-width: 550px
+  
+} // header終わり
+
+
+////////////////////コンテンツ(メイン左側)部分////////////////////////
+#contents{
+  #main{
+  
+    .contents-title{       //コンテンツタイトル
+    
+      text-align: center;
+      padding: 20px 0;
+      
+      @media(max-width: 550px){
+        .pc_contents-title{
+          display: none;
+        }
+      }
+
+      @media(min-width: 551px){
+        .sp_contents-title{
+          display: none;
+        }
+      }
+    
+    }
+  
+    .eyecatch_area{        //アイキャッチ部分
+      img{
+        max-width: 100%;
+        height: auto;
+      }
+    }
+   
+    .new-items,.popular-items,.listpage_products_list,.watched-recently-items{      //商品一覧
+    
+      .products_list{
+         display: flex;
+         flex-wrap: wrap;
+         width: 100%;
+         justify-content: space-between;
+      
+        .each_product{
+          box-sizing: border-box;
+          list-style: none;
+          width: 48.8%;
+          background-color: white;
+          @include fontsize(13);
+          padding: 8px;
+
+          
+          @media(min-width: 550px){
+            width:-webkit-calc((100% - 4px) / 3 );
+            width:calc((100% - 4px) / 3 );
+            padding: 10px;
+          }
+          
+          a{
+            img{
+              width: 100%;
+              height: auto;
+            }
+          }
+          
+        }
+        
+      } //.products_list
+    
+    } //.new-items,.popular-items,.listpage_products_list,.watched-recently-items
+  
+    .shopping-guide{     //ショッピングガイド
+  
+     .guide-box{
+       display: flex;
+       flex-direction: column;
+    
+        .guide-box-item{
+           box-sizing: border-box;
+           background-color: white;
+           margin: 3px;
+           padding: 20px;
+           flex: 1;
+           
+           p{
+             @include fontsize(13);
+             line-height: 1.5;
+             margin-bottom: 0;
+           }
+      
+           .font-color{
+             color: $maincolor;
+             font-weight: bold;
+             margin: 15px 0 5px;
+           }
+        
+           h6{
+             margin-bottom: 20px;
+           }
+        }
+        
+      } //guide-box
+  
+     @media(min-width:551px){
+       .guide-box{
+         flex-direction: row;
+       }  
+      
+     }
+  
+   } //.shopping-guide
+   
+   
+   .pankuzu-list{         //パンくずリスト
+     background-color: $subcolor;
+     width: 100%;
+     height: 30px;
+     border-radius: 3px;
+     margin-bottom: 10px;
+     
+     p{
+       background-repeat: no-repeat;
+       background-position: left 10px center;
+       
+       background-image:url("../images/list/home_icon.png");
+       background-size: 12px 11px;
+       padding-left: 30px;
+       line-height: 30px;
+       
+        a{
+          color: $maincolor;
+          @include fontsize(13);
+          text-decoration: none;
+          padding: 0 5px;
+        }
+      }
+   }
+   
+   .listpage_image{      //list.htmlのイメージ画像
+     margin-bottom: 10px;
+     
+     @media(max-width: 550px){
+       .listpage_image_pc{
+         display: none;
+       }
+     }
+     
+     @media(min-width: 551px){
+       .listpage_image_sp{
+         display: none;
+       }
+       .listpage_image_pc{
+         img{
+           width: 100%;
+         }
+       }
+     }
+     
+     
+   }
+   
+   .back_next_btn{      //BACK&NEXTボタン
+      display: flex;
+      justify-content: space-between;
+      margin-bottom:30px;
+      
+       .back_btn,.next_btn{
+         background-color: $maincolor;
+         text-align: center;
+         
+           a{
+            display: block;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            padding: 10px 30px;
+           }
+       }
+     
+   }
+   
+   .products_detail{           //商品詳細
+      background-color: white;
+      
+      @media(min-width: 551px){
+        padding: 60px;
+      }
+      
+      .products_name{
+        padding-bottom: 10px;
+        border-bottom: solid 1px $subcolor;
+      }
+      
+      .products_picture{
+        padding: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        
+         .products_picture_main{
+           box-sizing: border-box;
+           width: 70%;
+         }
+         
+         .products_picture_sub{
+           box-sizing: border-box;
+           width: 30%;
+           display: flex;
+           justify-content: space-between;
+           flex-flow: row wrap;
+           
+            li{
+               box-sizing: border-box;
+               width: 15px;
+               list-style: none;
+            }
+          }
+      
+      }  //.products_picture
+      
+      table{
+        width: 100%;
+        border-collapse: collapse;
+        
+         td{
+           padding: 5px 10px;
+           text-align: center;
+           color: $maincolor;
+           @include fontsize(13);
+           border: solid 1px $subcolor;
+         }  
+         .colord-td{
+             background-color: $basecolor;
+
+         }
+        
+      }  //table
+     
+   } //.products_detail
+   
+
+  
+  } //#main
+
+
+////////////////////  サイドメニュー(メイン右側)部分////////////////////////
+
+  #sidebar{
+  
+    .sidebar_title{
+    background-color: $maincolor;
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    
+  }
+  
+    .item-search{
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 5px;
+    
+    .sp_search{
+      form{
+        top: -24px;
+      }
+    }
+    
+    img{
+      margin-bottom: 10px;
+    }
+    
+    form{
+      position: relative;
+    }
+    input[type="image"],input[type="search"]{
+      position: absolute;
+      background-color: #eeeeee;
+      border: none;
+    }
+    input[type="search"]{
+      z-index: 1;
+      width: 100%;
+      height: 30px;
+    }
+    input[type="image"]{
+      z-index: 10;
+      right: 5px;
+      top: 8px;
+    }
+  
+    @media(max-width: 550px){
+      .pc_search{
+       display: none;
+      }
+    }
+     
+    @media(min-width: 551px){
+      .sp_search{
+       display: none;
+      }
+    }
+
+  } //.item-search
+    
+  
+    .pagelink{
+    
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+        
+    background-image:url("../images/top/next_icon.png");
+    background-size: 8px 14px;
+  }
+       
+    .categories{
+   
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+        
+    background-image:url("../images/top/down_icon.png");
+    background-size: 14px 8px;  
+  }
+ 
+  
+    .side-nav{
+    
+    .categories-list{
+      
+      .each_categories{
+        background-color: white;
+        list-style: none;
+        margin-bottom: 2px;
+        
+        a{
+          color: #232323;
+          @include fontsize(14);
+          background-repeat: no-repeat;
+          display: block;
+          padding: 10px;
+          text-decoration: none;
+          
+          background-repeat: no-repeat;
+          background-position: right 10px center;
+          
+          background-image:url("../images/top/next_icon_gray.png");
+          background-size: 8px 14px;
+        }
+      }
+    }
+    
+  } //.side-nav
+  
+    .introduction{
+           
+    .introbox{
+     @include fontsize(13);
+      background-color: white;
+      padding: 10px;
+      display: flex;
+      flex-direction: row;
+            
+        .introbox-child{
+           box-sizing: border-box;
+           flex: 1;
+           padding: 5px;
+        }
+    }  
+    
+    @media(min-width: 551px){
+     .introbox{
+       flex-direction: column;
+       padding: 5px;
+        
+         .introbox-child{
+           
+          a{  
+            text-align: center;
+            display: block;
+            margin-bottom: 20px;
+          }
+          
+         }
+      
+      } 
+      
+    } //min-width: 551px
+
+  } //.introduction
+
+  } //#sidebar
+} //#contents
+
+////////////////////TOPへ戻るリンク部分////////////////////////
+
+#return-top{
+  margin: 100px 0 20px;
+      a{
+        color: #232323;
+        @include fontsize(14);
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        text-decoration: none;
+      }
+} //#return-top
+
+////////////////////フッター部分////////////////////////
+footer{
+  
+  .footer-area{
+    text-align: center;
+    border-top: 1px solid $linecolor;
+    margin-bottom: 100px;
+    
+    .footer-text{
+      padding: 50px 0;
+      
+      p{
+        a{
+          color: #232323;
+          text-decoration: none;
+        }
+      }
+    }
+    .copy{
+      color: $maincolor;
+    }
+    
+  }
+ 
+}
