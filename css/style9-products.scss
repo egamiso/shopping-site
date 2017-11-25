@@ -30,7 +30,7 @@ h6{                    //タイトルなど
   font-weight: bold;
 }
 
-input{                 //inputデフォルトスタイル
+input{                 //inputデフォルトスタイルのリセット
       margin: 0;
       padding: 0;
       background: none;
@@ -141,118 +141,32 @@ header{
 
 ////////////////////コンテンツ(メイン左側)部分////////////////////////
 #contents{
-  #main{
   
-    .contents-title{       //コンテンツタイトル
+  .container{
     
-      text-align: center;
-      padding: 20px 0;
+    @media(max-width: 550px){
+      position: relative;
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+    
+  #main{
+    
+    .container-95per{
       
       @media(max-width: 550px){
-        .pc_contents-title{
-          display: none;
-        }
-      }
-
-      @media(min-width: 551px){
-        .sp_contents-title{
-          display: none;
-        }
-      }
-    
-    }
-  
-    .eyecatch_area{        //アイキャッチ部分
-      img{
-        max-width: 100%;
-        height: auto;
+        width: 95%;
+        margin: 0 auto;
       }
     }
-   
-    .new-items,.popular-items,.listpage_products_list,.watched-recently-items{      //商品一覧
     
-      .products_list{
-         display: flex;
-         flex-wrap: wrap;
-         width: 100%;
-         justify-content: space-between;
-         margin-bottom: 0;
-      
-        .each_product{
-          box-sizing: border-box;
-          list-style: none;
-          width: 48.8%;
-          background-color: white;
-          @include fontsize(13);
-          padding: 8px;
-
-          
-          @media(min-width: 550px){
-            width:-webkit-calc((100% - 4px) / 3 );
-            width:calc((100% - 4px) / 3 );
-            padding: 10px;
-          }
-          
-          a{
-            img{
-              width: 100%;
-              height: auto;
-            }
-          }
-          
-        }
-        
-      } //.products_list
-    
-    } //.new-items,.popular-items,.listpage_products_list,.watched-recently-items
-  
-    .shopping-guide{     //ショッピングガイド
-  
-     .guide-box{
-       display: flex;
-       flex-direction: column;
-       
-       @media(min-width:551px){
-         flex-direction: row;
-       }
-    
-        .guide-box-item{
-           box-sizing: border-box;
-           background-color: white;
-           margin: 3px;
-           padding: 20px;
-           flex: 1;
-           
-           p{
-             @include fontsize(13);
-             line-height: 1.5;
-             margin-bottom: 0;
-           }
-      
-           .font-color{
-             color: $maincolor;
-             font-weight: bold;
-             margin: 15px 0 5px;
-           }
-        
-           h6{
-             margin-bottom: 20px;
-           }
-        }
-        
-      } //guide-box
-  
-     
-  
-   } //.shopping-guide
-   
-   
-   .pankuzu-list{         //パンくずリスト
+    .pankuzu-list{         //パンくずリスト
      background-color: $subcolor;
-     width: 100%;
      height: 30px;
      border-radius: 3px;
-     margin-bottom: 10px;
+     margin: 10px auto;
      
      p{
         a{
@@ -273,52 +187,9 @@ header{
       }
    }
    
-   .listpage_image{      //list.htmlのイメージ画像
-     margin-bottom: 10px;
-     
-     @media(max-width: 550px){
-       .listpage_image_pc{
-         display: none;
-       }
-     }
-     
-     @media(min-width: 551px){
-       .listpage_image_sp{
-         display: none;
-       }
-       .listpage_image_pc{
-         img{
-           width: 100%;
-         }
-       }
-     }
-     
-     
-   }
-   
-   .back_next_btn{      //BACK&NEXTボタン
-      display: flex;
-      justify-content: space-between;
-      margin-bottom:30px;
-      
-       .back_btn,.next_btn{
-         background-color: $maincolor;
-         text-align: center;
-         
-           a{
-            display: block;
-            font-weight: bold;
-            text-decoration: none;
-            color: white;
-            padding: 10px 30px;
-           }
-       }
-     
-   }
-   
    .products_detail{           //商品詳細
       background-color: white;
-      padding: 20px 0 10px;
+      padding: 20px 10px 10px;
       
       @media(min-width: 551px){
         padding: 40px 60px 60px;
@@ -550,28 +421,135 @@ header{
       }  //.products_explanation_text
      
    } //.products_detail
-   
+    .contents-title{       //コンテンツタイトル
+    
+      text-align: center;
+      padding: 20px 0;
+      
+      @media(max-width: 550px){
+        .pc_contents-title{
+          display: none;
+        }
+      }
 
+      @media(min-width: 551px){
+        .sp_contents-title{
+          display: none;
+        }
+      }
+    }
+   
+    .watched-recently-items{      //最近見た商品
+    
+      .products_list{
+         display: flex;
+         flex-wrap: wrap;
+         width: 100%;
+         justify-content: space-between;
+         margin-bottom: 0;
+      
+        .each_product{
+          box-sizing: border-box;
+          list-style: none;
+          width: 48.8%;
+          background-color: white;
+          @include fontsize(13);
+          padding: 8px;
+
+          
+          @media(min-width: 550px){
+            width:-webkit-calc((100% - 4px) / 3 );
+            width:calc((100% - 4px) / 3 );
+            padding: 10px;
+          }
+          
+          a{
+            img{
+              width: 100%;
+              height: auto;
+            }
+          }
+          
+        }
+        
+      } //.products_list
+    
+    } //.watched-recently-items
   
+    .shopping-guide{     //ショッピングガイド
+  
+     .guide-box{
+       display: flex;
+       flex-direction: column;
+       
+       @media(min-width:551px){
+         flex-direction: row;
+       }
+    
+        .guide-box-item{
+           box-sizing: border-box;
+           background-color: white;
+           margin: 3px;
+           padding: 20px;
+           flex: 1;
+           
+           p{
+             @include fontsize(13);
+             line-height: 1.5;
+             margin-bottom: 0;
+           }
+      
+           .font-color{
+             color: $maincolor;
+             font-weight: bold;
+             margin: 15px 0 5px;
+           }
+        
+           h6{
+             margin-bottom: 20px;
+           }
+        }
+        
+      } //guide-box
+  
+     
+  
+   } //.shopping-guide
+   
+  } //.container
   } //#main
 
 
 ////////////////////  サイドメニュー(メイン右側)部分////////////////////////
 
   #sidebar{
+    
+    .container-95per{
+      
+      @media(max-width: 550px){
+        width: 95%;
+        margin: 0 auto;
+      }
+    }
   
     .sidebar_title{
     background-color: $maincolor;
     display: block;
     margin-bottom: 10px;
     padding: 10px;
-    
-  }
+    }
   
     .item-search{
     background-color: white;
     padding: 20px;
     margin-bottom: 5px;
+    box-sizing: border-box;
+    
+    @media(max-width: 550px){
+      margin-top: 20px;
+      margin-bottom: 20px;
+      padding: 30px 20px;
+    }
     
     .sp_search{
       form{
